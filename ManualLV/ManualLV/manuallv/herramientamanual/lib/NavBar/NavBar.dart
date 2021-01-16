@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:herramientamanual/NavBar/src/SoftwareName.dart';
 import 'package:herramientamanual/NavBar/src/nBar.dart';
+import 'package:herramientamanual/NavBar/src/searchBar.dart';
 
 class NavBar extends StatefulWidget {
   @override
@@ -18,11 +19,11 @@ class _NavBarState extends State<NavBar> {
         color: Color(0xff003F72),
         child: Stack(
           children: [
-            softwareName(),
-            Align(
-              alignment: Alignment.center,
-              child:NBar()
-            ),
+            ListView(children: [
+              softwareName(),
+              searchBar(),
+            ]),
+            Align(alignment: Alignment.center, child: NBar()),
           ],
         ),
       ),
