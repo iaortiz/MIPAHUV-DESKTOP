@@ -51,6 +51,15 @@ class _NBarState extends State<NBar> {
               });
             },
           ),
+          NBarItem(
+            active: selected[3],
+            texto: 'Programa CUATRO',
+            touched: () {
+              setState(() {
+                select(3);
+              });
+            },
+          ),
         ],
       ),
     );
@@ -94,7 +103,7 @@ class _NBarItemState extends State<NBarItem> {
                 child: Row(
                   children: [
                     AnimatedContainer(
-                      duration: Duration(milliseconds: 255),
+                      duration: Duration(milliseconds: 150),
                       height: 35.0,
                       width: 5.0,
                       decoration: BoxDecoration(
