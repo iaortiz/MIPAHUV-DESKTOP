@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:herramientamanual/NavBar/src/SoftwareName.dart';
-import 'package:herramientamanual/NavBar/src/commentaries.dart';
-import 'package:herramientamanual/NavBar/src/nBar.dart';
 import 'package:herramientamanual/NavBar/src/searchBar.dart';
 
 class NavBar extends StatefulWidget {
@@ -24,11 +22,6 @@ class _NavBarState extends State<NavBar> {
               SoftwareName(),
               SearchBar(),
             ]),
-            // Align(alignment: Alignment.center, child: NBar()), [Esto es para queries fuera del prototipo]
-            Align(
-              alignment: Alignment.bottomLeft,
-              child: Commentaries(),
-            ),
           ],
         ),
       ),

@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:herramientamanual/SearchBoards/SearchView.dart';
 
 class SearchBar extends StatelessWidget {
   @override
@@ -11,7 +12,8 @@ class SearchBar extends StatelessWidget {
       height: 60.0,
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(topLeft:Radius.circular(30), bottomLeft: Radius.circular(30)),
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(30), bottomLeft: Radius.circular(30)),
           color: Color(0xffF2F2F2),
         ),
         alignment: Alignment.centerRight,
@@ -36,7 +38,11 @@ class SearchBar extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.0)),
                     onPressed: () {
-                      //Debe lanzar una interfaz con un botón y un textfield para realizar la busqueda, se debe redireccionar a otra interfaz que funcione como la lista en la pantalla principal pero solo con los elementos que cumplan la búsqueda.
+                      return showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return SearchView();
+                          });
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

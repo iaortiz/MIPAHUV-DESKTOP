@@ -34,7 +34,7 @@ class _ContentListState extends State<ContentList> {
 
   Future loadResources() async {
     result = await FirebaseFirestore.instance
-        .collection('resources')
+        .collection('resources').orderBy('name')
         .get()
         .then((QuerySnapshot querySnapshot) => {
               querySnapshot.docs.forEach((doc) {

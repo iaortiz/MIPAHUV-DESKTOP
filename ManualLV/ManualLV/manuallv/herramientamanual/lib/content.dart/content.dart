@@ -82,7 +82,7 @@ class _ContentState extends State<Content> {
                               child: Row(
                                 children: [
                                   Text(
-                                    'ASIGNATURA: ',
+                                    'SOFTWARE: ',
                                     style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w900),
