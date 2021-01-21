@@ -1,21 +1,13 @@
+import 'package:flutter/material.dart';
 
-
-import 'package:cloud_firestore/cloud_firestore.dart';
-
-class Commentaries{
-String content, resourceID, user;
-double score;
-Timestamp createdAt;
-
-Commentaries(
-  String content, String resourceID, String user, double score, Timestamp createdAt
-){
-
-  this.content = content;
-  this.resourceID = resourceID;
-  this.user = user;
-  this.score = score;
-  this.createdAt = createdAt;
-}
+class CommentariesView extends StatefulWidget {
+  @override
+  _CommentariesViewState createState() => _CommentariesViewState();
 }
 
+class _CommentariesViewState extends State<CommentariesView> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}

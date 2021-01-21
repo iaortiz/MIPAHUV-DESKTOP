@@ -18,6 +18,7 @@ class Content extends StatefulWidget {
 class _ContentState extends State<Content> {
   @override
   void initState() {
+    print(widget.aux.id +' / '+widget.aux.name);
     super.initState();
   }
 

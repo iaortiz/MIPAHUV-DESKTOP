@@ -20,7 +20,7 @@ class _ResourceCardState extends State<ResourceCard> {
       height: 165,
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        elevation: 2.0,
+        elevation: 1.0,
         margin: EdgeInsets.all(10),
         child: Column(
           children: <Widget>[

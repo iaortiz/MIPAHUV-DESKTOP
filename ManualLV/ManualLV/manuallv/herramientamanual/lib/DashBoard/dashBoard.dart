@@ -37,7 +37,7 @@ class Dashboard extends StatelessWidget {
                       child: Text(
                         'Contenido disponible:',
                         style: TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.w900),
+                            fontSize: 20, fontWeight: FontWeight.w900),
                       ),
                     ),
                   ],
