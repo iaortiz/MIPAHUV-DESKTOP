@@ -52,8 +52,9 @@ class _SearchedListSoftwareState extends State<SearchedListSoftware> {
                       doc['name'],
                       doc['source'],
                       doc['subject'],
-                      doc['createdAt'].toString());
-                  print(recurso.category);
+                      doc['createdAt'],
+                      doc.reference.id);
+                  print(recurso.id + " / " + recurso.name);
                   aux.add(recurso);
                   resource = ResourceCard(recurso);
                   resources.add(resource);

@@ -8,19 +8,19 @@ import 'package:herramientamanual/Data/resources.dart';
 FirebaseApp secondaryApp = Firebase.app('herramientamanual');
 FirebaseFirestore firestore = FirebaseFirestore.instanceFor(app: secondaryApp);
 var result;
-  bool _initialized = false;
-  bool _error = false;
-  List<Widget> resources =[];
-  List<Resource> aux =[];
-  Resource recurso;
-  Widget resource;
+bool _initialized = false;
+bool _error = false;
+List<Widget> resources = [];
+List<Resource> aux = [];
+Resource recurso;
+Widget resource;
+
 class ContentList extends StatefulWidget {
   @override
   _ContentListState createState() => _ContentListState();
 }
 
 class _ContentListState extends State<ContentList> {
-  
   void initializeFlutterFire() async {
     try {
       await Firebase.initializeApp();
@@ -34,14 +34,21 @@ class _ContentListState extends State<ContentList> {
 
   Future loadResources() async {
     result = await FirebaseFirestore.instance
-        .collection('resources').orderBy('name')
+        .collection('resources')
+        .orderBy('name')
         .get()
         .then((QuerySnapshot querySnapshot) => {
               querySnapshot.docs.forEach((doc) {
                 setState(() {
-                  recurso = new Resource(doc['category'], doc['description'],
-                      doc['name'], doc['source'], doc['subject'], doc['createdAt'].toString());
-                  print(recurso.category);
+                  recurso = new Resource(
+                      doc['category'],
+                      doc['description'],
+                      doc['name'],
+                      doc['source'],
+                      doc['subject'],
+                      doc['createdAt'],
+                      doc.reference.id);
+                  print(recurso.id + " / " + recurso.name);
                   aux.add(recurso);
                   resource = ResourceCard(recurso);
                   resources.add(resource);
@@ -75,9 +82,9 @@ class DataList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: resources.length,
-      itemBuilder: (context, index){
-        return resources[index]; 
-    });
+        itemCount: resources.length,
+        itemBuilder: (context, index) {
+          return resources[index];
+        });
   }
 }
