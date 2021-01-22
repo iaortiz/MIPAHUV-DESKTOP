@@ -18,7 +18,7 @@ class Content extends StatefulWidget {
 class _ContentState extends State<Content> {
   @override
   void initState() {
-    print(widget.aux.id +' / '+widget.aux.name);
+    print(widget.aux.id + ' / ' + widget.aux.name);
     super.initState();
   }
 
@@ -46,99 +46,103 @@ class _ContentState extends State<Content> {
             ),
             Positioned(
               left: 600,
-              child: Container(
-                  height: MediaQuery.of(context).size.height,
-                  width: MediaQuery.of(context).size.width * 0.60,
-                  child: Stack(
-                    //crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ListView(
-                        children: [
-                          Container(
-                            alignment: Alignment.topLeft,
-                            decoration: BoxDecoration(
-                              color: Colors.transparent,
-                              border: Border(
-                                  bottom: BorderSide(
-                                      width: 2.0, color: Color(0xffE0DED8))),
-                            ),
-                            child: SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.4,
-                              height: 150,
-                              child: AutoSizeText(
-                                widget.aux.name,
-                                maxLines: 5000,
-                                style: TextStyle(
-                                    fontSize: 40, fontWeight: FontWeight.w500),
+              child: SingleChildScrollView(
+                child: Container(
+                    height: MediaQuery.of(context).size.height,
+                    width: MediaQuery.of(context).size.width * 0.60,
+                    child: Stack(
+                      //crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ListView(
+                          children: [
+                            Container(
+                              alignment: Alignment.topLeft,
+                              decoration: BoxDecoration(
+                                color: Colors.transparent,
+                                border: Border(
+                                    bottom: BorderSide(
+                                        width: 2.0, color: Color(0xffE0DED8))),
+                              ),
+                              child: SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.4,
+                                height: 150,
+                                child: AutoSizeText(
+                                  widget.aux.name,
+                                  maxLines: 5000,
+                                  style: TextStyle(
+                                      fontSize: 40,
+                                      fontWeight: FontWeight.w500),
+                                ),
                               ),
                             ),
-                          ),
-                          Container(
-                              width: MediaQuery.of(context).size.width,
-                              margin: EdgeInsets.only(bottom: 30, top: 32),
-                              height: 64,
+                            Container(
+                                width: MediaQuery.of(context).size.width,
+                                margin: EdgeInsets.only(bottom: 30, top: 32),
+                                height: 64,
+                                alignment: Alignment.topLeft,
+                                decoration:
+                                    BoxDecoration(color: Colors.transparent),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      'SOFTWARE: ',
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w900),
+                                    ),
+                                    Text(
+                                      widget.aux.subject,
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w100),
+                                    ),
+                                  ],
+                                )),
+                            Container(
+                              margin: EdgeInsets.only(bottom: 16),
+                              height: 38,
                               alignment: Alignment.topLeft,
                               decoration:
                                   BoxDecoration(color: Colors.transparent),
-                              child: Row(
-                                children: [
-                                  Text(
-                                    'SOFTWARE: ',
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w900),
-                                  ),
-                                  Text(
-                                    widget.aux.subject,
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w100),
-                                  ),
-                                ],
-                              )),
-                          Container(
-                            margin: EdgeInsets.only(bottom: 16),
-                            height: 38,
-                            alignment: Alignment.topLeft,
-                            decoration:
-                                BoxDecoration(color: Colors.transparent),
-                            child: Text(
-                              'DESCRIPCIÓN:',
-                              style: TextStyle(
-                                  fontSize: 28, fontWeight: FontWeight.w900),
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.only(bottom: 128),
-                            alignment: Alignment.topLeft,
-                            decoration:
-                                BoxDecoration(color: Colors.transparent),
-                            child: SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.4,
-                              height: MediaQuery.of(context).size.height,
-                              child: AutoSizeText(
-                                widget.aux.description,
-                                maxLines: 5000,
+                              child: Text(
+                                'DESCRIPCIÓN:',
                                 style: TextStyle(
-                                    fontSize: 24, fontWeight: FontWeight.w100),
+                                    fontSize: 28, fontWeight: FontWeight.w900),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                      Align(
-                        alignment: Alignment.bottomRight,
-                        child: RaisedButton(
-                          onPressed: null,
-                          color: Color(0xff191919),
+                            Container(
+                              margin: EdgeInsets.only(bottom: 250),
+                              alignment: Alignment.topLeft,
+                              decoration:
+                                  BoxDecoration(color: Colors.transparent),
+                              child: SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.4,
+                                child: AutoSizeText(
+                                  widget.aux.description,
+                                  maxLines: 50000,
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w100),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      )
-                    ],
-                  )),
+                        Align(
+                          alignment: Alignment.bottomRight,
+                          child: RaisedButton(
+                            onPressed: null,
+                            color: Color(0xff191919),
+                          ),
+                        )
+                      ],
+                    )),
+              ),
             ),
             Align(
               alignment: Alignment.bottomRight,
               child: FloatingActionButton.extended(
+                  
                   onPressed: () {
                     //Debe lanzar una interfaz que se conecte con los comentarios del recurso, se puede usar aux.name para hacer la query.
                     //Se debe poder crear comentarios y vizualizar la calificación del recurso
