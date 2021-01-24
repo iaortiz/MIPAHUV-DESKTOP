@@ -19,6 +19,21 @@ double score;
 double auxScore;
 var valueAux;
 
+TextEditingController scoreC = new TextEditingController();
+TextEditingController user = new TextEditingController();
+TextEditingController comment = new TextEditingController();
+CollectionReference commentaries =
+    FirebaseFirestore.instance.collection('commentaries');
+Future<void> addComment(double scoreAux, String content, String user) {
+  return commentaries.add({
+    'createdAt': DateTime.now(),
+    'score': scoreAux,
+    'content': content,
+    'user': user,
+    'resourceID': valueAux
+  });
+}
+
 // ignore: must_be_immutable
 class CommentariesListName extends StatefulWidget {
   String value;
@@ -137,14 +152,120 @@ class DataList extends StatelessWidget {
                     elevation: 0,
                     backgroundColor: Color(0xffEAAB00),
                     onPressed: () {
-                      return showDialog(
+                      showDialog(
                           context: context,
                           builder: (BuildContext context) {
                             return AlertDialog(
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(30),
                               ),
-                              content: Text(valueAux),
+                              title: Text('Añadir comentario: '),
+                              content: Container(
+                                height: 500,
+                                width: 500,
+                                child: Column(
+                                  children: [
+                                    Align(
+                                      alignment: Alignment.bottomRight,
+                                      child: FloatingActionButton.extended(
+                                        backgroundColor: Color(0xffEAAB00),
+                                        onPressed: () {
+                                          double scoreAux =
+                                              double.parse(scoreC.text);
+                                          String content = comment.text;
+                                          String userAux = user.text;
+                                          addComment(scoreAux, content, userAux)
+                                              .then((value) => showDialog(
+                                                  context: context,
+                                                  builder:
+                                                      (BuildContext context) {
+                                                    return AlertDialog(
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(30),
+                                                      ),
+                                                      content: Text(
+                                                          'Comentario añadido',
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w900)),
+                                                    );
+                                                  }));
+                                        },
+                                        elevation: 0,
+                                        label: Text(
+                                          'Añadir',
+                                          style: TextStyle(
+                                              color: Color(0xff191919),
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w900),
+                                        ),
+                                        icon: Icon(Icons.add,
+                                            color: Color(0xff191919)),
+                                      ),
+                                    ),
+                                    Container(
+                                      height: 400,
+                                      width: 500,
+                                      child: ListView(
+                                        children: [
+                                          Container(
+                                            margin: EdgeInsets.all(16),
+                                            child: TextField(
+                                                style: TextStyle(
+                                                    fontSize: 20,
+                                                    fontWeight:
+                                                        FontWeight.w100),
+                                                decoration: InputDecoration(
+                                                    labelStyle: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w900),
+                                                    labelText:
+                                                        'Calificación: '),
+                                                controller: scoreC),
+                                          ),
+                                          Container(
+                                            margin: EdgeInsets.all(16),
+                                            child: TextField(
+                                                style: TextStyle(
+                                                    fontSize: 20,
+                                                    fontWeight:
+                                                        FontWeight.w100),
+                                                decoration: InputDecoration(
+                                                    labelStyle: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w900),
+                                                    labelText:
+                                                        'Correo electrónico del usuario: '),
+                                                controller: user),
+                                          ),
+                                          Container(
+                                            child: Text(
+                                              'Quisiera comentar que: ',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w900,
+                                                  fontSize: 20),
+                                            ),
+                                          ),
+                                          Container(
+                                            margin: EdgeInsets.all(16),
+                                            child: TextField(
+                                              maxLines: 50,
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.w100),
+                                              controller: comment,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             );
                           });
                     },
