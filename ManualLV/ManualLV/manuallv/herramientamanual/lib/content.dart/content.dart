@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:herramientamanual/Commentaries/commentList.dart';
 import 'package:herramientamanual/Data/resources.dart';
 import 'package:herramientamanual/content.dart/src/video.dart';
 import 'package:video_player/video_player.dart';
@@ -142,10 +143,12 @@ class _ContentState extends State<Content> {
             Align(
               alignment: Alignment.bottomRight,
               child: FloatingActionButton.extended(
-                  
                   onPressed: () {
-                    //Debe lanzar una interfaz que se conecte con los comentarios del recurso, se puede usar aux.name para hacer la query.
-                    //Se debe poder crear comentarios y vizualizar la calificación del recurso
+                    return showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return CommentariesListName(widget.aux.id);
+                        });
                   },
                   elevation: 0,
                   backgroundColor: Color(0xffEAAB00),
