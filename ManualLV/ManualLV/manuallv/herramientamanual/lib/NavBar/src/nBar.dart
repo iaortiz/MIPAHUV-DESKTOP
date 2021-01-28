@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:herramientamanual/SearchBoards/src/searchBarName.dart';
-import 'package:herramientamanual/SearchBoards/src/searchBarSoftware.dart';
+import 'package:herramientamanual/NavBar/src/chewie_list_item.dart';
 
 class NBar extends StatefulWidget {
   @override
@@ -8,10 +7,10 @@ class NBar extends StatefulWidget {
 }
 
 class _NBarState extends State<NBar> {
-  List<bool> selected = [true, false];
+  List<bool> selected = [true, false, false, false, false];
 
   void select(int n) {
-    for (int i = 0; i < 2; i++) {
+    for (int i = 0; i < 5; i++) {
       if (i != n) {
         selected[i] = false;
       } else {
@@ -23,33 +22,33 @@ class _NBarState extends State<NBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 350.0,
       child: Column(
         children: [
           NBarItem(
             active: selected[0],
-            texto: 'Nombre del recurso',
+            texto: 'Programa UNO',
             touched: () {
               setState(() {
                 select(0);
-                return showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return SearchBarName();
-                    });
               });
             },
           ),
           NBarItem(
             active: selected[1],
-            texto: 'Programa',
+            texto: 'Programa DOS',
             touched: () {
               setState(() {
                 select(1);
-                return showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return SearchBarSoftware();
-                    });
+              });
+            },
+          ),
+          NBarItem(
+            active: selected[2],
+            texto: 'Programa TRES',
+            touched: () {
+              setState(() {
+                select(2);
               });
             },
           ),
@@ -96,7 +95,7 @@ class _NBarItemState extends State<NBarItem> {
                 child: Row(
                   children: [
                     AnimatedContainer(
-                      duration: Duration(milliseconds: 150),
+                      duration: Duration(milliseconds: 255),
                       height: 35.0,
                       width: 5.0,
                       decoration: BoxDecoration(
@@ -117,7 +116,7 @@ class _NBarItemState extends State<NBarItem> {
                               child: Text(
                                 texto,
                                 style: TextStyle(
-                                    color: Color(0xff191919),
+                                    color: Color(0xffF2F2F2),
                                     fontWeight: FontWeight.w900,
                                     fontSize: 20.0),
                               ))

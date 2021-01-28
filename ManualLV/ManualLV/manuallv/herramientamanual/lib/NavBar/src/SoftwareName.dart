@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-class SoftwareName extends StatelessWidget {
+class softwareName extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -12,7 +12,7 @@ class SoftwareName extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'U',
+              'U' ,
               style: TextStyle(
                   fontWeight: FontWeight.w900,
                   color: Color(0xffF2F2F2),
