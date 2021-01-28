@@ -1,14 +1,14 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:herramientamanual/NavBar/src/chewie_list_item.dart';
+import 'package:herramientamanual/SearchBoards/SearchView.dart';
 
-class searchBar extends StatelessWidget {
+class SearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      margin: EdgeInsets.only(top: 5, left: 14),
+      margin: EdgeInsets.only(top: 64, left: 64),
       height: 60.0,
       child: Container(
         decoration: BoxDecoration(
@@ -38,7 +38,11 @@ class searchBar extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.0)),
                     onPressed: () {
-                      showSearch(context: context, delegate: BusquedaDatos());
+                      return showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return SearchView();
+                          });
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -52,75 +56,6 @@ class searchBar extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class BusquedaDatos extends SearchDelegate<String> {
-  final listaProgramas = [
-    "NetBeans",
-    "SQLServer",
-    "MySql",
-    "Node.js",
-    "Android Studio",
-    "Python IDE"
-  ];
-  final programasRecientes = [
-    "NetBeans",
-    "SQLServer",
-    "MySql",
-    "Node.js",
-    "Android Studio",
-    "Python IDE",
-  ];
-
-  @override
-  List<Widget> buildActions(BuildContext context) {
-    //acciones dentro de la barra de la aplicacion
-    return [
-      IconButton(
-          icon: Icon(Icons.clear),
-          onPressed: () {
-            query = "";
-          })
-    ];
-  }
-
-  @override
-  Widget buildLeading(BuildContext context) {
-    //icono en la izquierda de la barra
-    return IconButton(
-        icon: AnimatedIcon(
-          icon: AnimatedIcons.menu_arrow,
-          progress: transitionAnimation,
-        ),
-        onPressed: () {
-          close(context, null);
-        });
-  }
-
-  @override
-  Widget buildResults(BuildContext context) {
-    //muestra resultados de busqueda
-    return MyHomePage();
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    //muestra el criterio de busqueda
-    final suggestionList = query.isEmpty
-        ? programasRecientes
-        : listaProgramas.where((p) => p.startsWith(query)).toList();
-
-    return ListView.builder(
-      itemBuilder: (context, index) => ListTile(
-        onTap: () {
-          showResults(context);
-        },
-        leading: Icon(Icons.video_library),
-        title: Text(suggestionList[index]),
-      ),
-      itemCount: suggestionList.length,
     );
   }
 }
