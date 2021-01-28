@@ -68,7 +68,7 @@ class _ContentState extends State<Content> {
                                 width: MediaQuery.of(context).size.width * 0.4,
                                 height: 150,
                                 child: AutoSizeText(
-                                  widget.aux.name,
+                                  widget.aux.name.toUpperCase(),
                                   maxLines: 5000,
                                   style: TextStyle(
                                       fontSize: 40,
@@ -92,7 +92,7 @@ class _ContentState extends State<Content> {
                                           fontWeight: FontWeight.w900),
                                     ),
                                     Text(
-                                      widget.aux.subject,
+                                      widget.aux.subject.toUpperCase(),
                                       style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.w100),

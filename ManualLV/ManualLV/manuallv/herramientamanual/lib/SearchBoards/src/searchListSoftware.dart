@@ -41,7 +41,8 @@ class _SearchedListSoftwareState extends State<SearchedListSoftware> {
   Future loadResources() async {
     result = await FirebaseFirestore.instance
         .collection('resources')
-        .where('subject', isEqualTo: widget.value)
+        .where('subject', isGreaterThanOrEqualTo: widget.value.toLowerCase())
+        .where('subject', isLessThan: (widget.value + 'z').toLowerCase())
         .get()
         .then((QuerySnapshot querySnapshot) => {
               querySnapshot.docs.forEach((doc) {

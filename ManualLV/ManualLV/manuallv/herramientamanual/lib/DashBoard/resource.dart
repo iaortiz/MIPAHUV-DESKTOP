@@ -27,12 +27,12 @@ class _ResourceCardState extends State<ResourceCard> {
             ListTile(
               contentPadding: EdgeInsets.all(16),
               title: Text(
-                widget.aux.name,
-                style: TextStyle(fontSize: 26, fontWeight: FontWeight.w900),
+                widget.aux.name.toUpperCase(),
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900),
               ),
               subtitle: Text(
-                widget.aux.subject,
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w100),
+                widget.aux.subject.toUpperCase(),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w100),
               ),
             ),
             Container(

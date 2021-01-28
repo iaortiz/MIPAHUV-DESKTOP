@@ -41,7 +41,8 @@ class _SearchedListNameState extends State<SearchedListName> {
   Future loadResources() async {
     result = await FirebaseFirestore.instance
         .collection('resources')
-        .where('name', isEqualTo: widget.value)
+        .where('name', isGreaterThanOrEqualTo: widget.value.toLowerCase())
+        .where('name', isLessThan: (widget.value + 'z').toLowerCase())
         .get()
         .then((QuerySnapshot querySnapshot) => {
               querySnapshot.docs.forEach((doc) {
